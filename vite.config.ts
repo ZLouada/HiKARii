@@ -9,5 +9,12 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 export default defineConfig({
   nitro: {
     preset: process.env.VERCEL ? "vercel" : "cloudflare-module",
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true,
+      wrangler: {
+        workers_dev: true,
+      },
+    },
   },
 });
