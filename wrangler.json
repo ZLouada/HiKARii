@@ -13,6 +13,16 @@
   "build": {
     "command": "bun run build"
   },
+  "routes": [
+    {
+      "pattern": "hikarii.studio",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.hikarii.studio",
+      "custom_domain": true
+    }
+  ],
   "no_bundle": true,
   "rules": [
     {
