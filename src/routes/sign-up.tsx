@@ -6,7 +6,10 @@ import { Logo } from "@/components/site/layout";
 
 export const Route = createFileRoute("/sign-up")({
   head: () => ({
-    meta: [{ title: "Create Account — HiKARii" }],
+    meta: [
+      { title: "Create Account — HiKARii" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: SignUpPage,
 });

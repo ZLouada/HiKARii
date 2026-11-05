@@ -7,6 +7,8 @@ export const Route = createFileRoute("/terms")({
   head: () => ({
     meta: [
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://hikarii.studio/terms" },
+      { name: "robots", content: "index, follow" },
       { name: "twitter:card", content: "summary_large_image" },
       { title: "Terms, Halal Policy & Rights — HiKARii" },
       {
@@ -18,6 +20,20 @@ export const Route = createFileRoute("/terms")({
       {
         property: "og:description",
         content: "Professional video editing without compromising Islamic and ethical standards.",
+      },
+      { property: "og:image", content: "https://hikarii.studio/og-image.png" },
+      { name: "twitter:title", content: "Terms, Halal Policy & Rights — HiKARii" },
+      {
+        name: "twitter:description",
+        content: "Professional video editing without compromising Islamic and ethical standards.",
+      },
+      { name: "twitter:image", content: "https://hikarii.studio/og-image.png" },
+      { name: "twitter:image:alt", content: "HiKARii — Professional Video Editing Agency" },
+    ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://hikarii.studio/terms",
       },
     ],
   }),

@@ -6,7 +6,10 @@ import { Logo } from "@/components/site/layout";
 
 export const Route = createFileRoute("/sign-in")({
   head: () => ({
-    meta: [{ title: "Sign In — HiKARii" }],
+    meta: [
+      { title: "Sign In — HiKARii" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: SignInPage,
 });

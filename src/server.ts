@@ -47,8 +47,62 @@ function isH3SwallowedErrorBody(body: string): boolean {
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
+      const url = new URL(request.url);
+      const forwardedProto = request.headers.get("x-forwarded-proto");
+      const isHttp = url.protocol === "http:" || forwardedProto === "http";
+      const hostname = url.hostname.toLowerCase();
+      const isWww = hostname === "www.hikarii.studio";
+      const isHikarii = hostname === "hikarii.studio" || isWww;
+
+      // Trailing slash normalization for paths other than root (e.g. /work/ -> /work)
+      const hasTrailingSlash = url.pathname.length > 1 && url.pathname.endsWith("/");
+
+      if (isHikarii && (isHttp || isWww || hasTrailingSlash)) {
+        const targetUrl = new URL(url.toString());
+        targetUrl.protocol = "https:";
+        targetUrl.host = "hikarii.studio";
+        if (hasTrailingSlash) {
+          targetUrl.pathname = url.pathname.replace(/\/+$/, "") || "/";
+        }
+        const status = request.method === "GET" || request.method === "HEAD" ? 301 : 308;
+        return new Response(null, {
+          status,
+          headers: {
+            Location: targetUrl.toString(),
+            "Cache-Control": "public, max-age=31536000",
+          },
+        });
+      } else if (hasTrailingSlash && !isHikarii) {
+        // Local dev or preview environments: normalize trailing slash
+        const targetUrl = new URL(url.toString());
+        targetUrl.pathname = url.pathname.replace(/\/+$/, "") || "/";
+        const status = request.method === "GET" || request.method === "HEAD" ? 301 : 308;
+        return new Response(null, {
+          status,
+          headers: {
+            Location: targetUrl.toString(),
+          },
+        });
+      }
+
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
+
+      // If handler responded with a 307 redirect for trailing slash, upgrade to 301 permanent redirect
+      if (
+        response.status === 307 &&
+        (request.method === "GET" || request.method === "HEAD")
+      ) {
+        const location = response.headers.get("location");
+        if (location) {
+          const newHeaders = new Headers(response.headers);
+          return new Response(response.body, {
+            status: 301,
+            headers: newHeaders,
+          });
+        }
+      }
+
       return await normalizeCatastrophicSsrResponse(response);
     } catch (error) {
       console.error(error);

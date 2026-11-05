@@ -18,18 +18,19 @@ export const Route = createFileRoute("/")({
     meta: [
       { property: "og:site_name", content: "HiKARii" },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://hikarii.studio" },
+      { property: "og:url", content: "https://hikarii.studio/" },
+      { name: "robots", content: "index, follow" },
       { title: "HiKARii — Professional Video Editing Agency" },
       {
         name: "description",
         content:
-          "HiKARii is a professional video editing agency. Upload raw footage, collaborate with our creative post-production team, and receive master edits.",
+          "HiKARii is a professional video editing agency. Upload raw footage and our dedicated post-production team delivers master edits for YouTube, social, and brands.",
       },
       { property: "og:title", content: "HiKARii — Professional Video Editing Agency" },
       {
         property: "og:description",
         content:
-          "HiKARii is a professional video editing agency. Send us your footage, and our dedicated team handles the entire post-production workflow.",
+          "HiKARii is a professional video editing agency. Upload raw footage and our dedicated post-production team delivers master edits for YouTube, social, and brands.",
       },
       { property: "og:image", content: "https://hikarii.studio/og-image.png" },
       { property: "og:image:secure_url", content: "https://hikarii.studio/og-image.png" },
@@ -42,7 +43,7 @@ export const Route = createFileRoute("/")({
       {
         name: "twitter:description",
         content:
-          "HiKARii is a professional video editing agency. Send us your footage, and our dedicated team handles the entire post-production workflow.",
+          "HiKARii is a professional video editing agency. Upload raw footage and our dedicated post-production team delivers master edits for YouTube, social, and brands.",
       },
       { name: "twitter:image", content: "https://hikarii.studio/og-image.png" },
       { name: "twitter:image:alt", content: "HiKARii — Professional Video Editing Agency" },

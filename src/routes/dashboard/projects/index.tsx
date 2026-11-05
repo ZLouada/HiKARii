@@ -8,7 +8,10 @@ import { Search, Plus, ArrowRight, Video } from "lucide-react";
 
 export const Route = createFileRoute("/dashboard/projects/")({
   head: () => ({
-    meta: [{ title: "My Projects — HiKARii" }],
+    meta: [
+      { title: "My Projects — HiKARii" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: MyProjectsPage,
 });

@@ -114,6 +114,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:image", content: "https://hikarii.studio/og-image.png" },
       { name: "twitter:image:alt", content: "HiKARii — Professional Video Editing Agency" },
       { name: "theme-color", content: "#0A0A0A" },
+      { name: "robots", content: "noindex, nofollow" },
     ],
     links: [
       {
@@ -131,7 +132,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         crossOrigin: "anonymous",
       },
       { rel: "stylesheet", href: appCss },
-      { rel: "canonical", href: "https://hikarii.studio/" },
       { rel: "icon", href: "/favicon.ico", sizes: "32x32 48x48" },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "icon", href: "/favicon.png", type: "image/png", sizes: "512x512" },

@@ -14,6 +14,7 @@ Allow: /assets/
 Allow: /fonts/
 
 # Disallow private application routes & internal endpoints
+Disallow: /dashboard
 Disallow: /dashboard/
 Disallow: /sign-in
 Disallow: /sign-up

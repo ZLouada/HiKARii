@@ -12,6 +12,8 @@ import {
   useTransform,
 } from "motion/react";
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
+import { Link } from "@tanstack/react-router";
+export { Cta } from "./layout";
 import { Cta } from "./layout";
 import reel from "@/assets/videos/reel.mp4.asset.json";
 import { editors, images, steps, testimonials, work } from "./data";
@@ -204,11 +206,11 @@ export function Hero() {
           transition={{ delay: 0.5, duration: 0.8, ease }}
         >
           <p className="max-w-lg text-base text-snow/70 md:text-lg">
-            You create. HiKARii handles the edit. Send us your raw footage and creative brief—our dedicated team handles the entire post-production process from first cut to final master.
+            You create. HiKARii handles the edit. We are a dedicated video editing agency—our post-production team transforms your raw footage into polished, high-retention video content from first cut to final master.
           </p>
           <div className="flex flex-wrap gap-3">
             <Cta to="/get-started" analyticsLocation="hero">Start a Project</Cta>
-            <Cta to="/work" variant="ghost">View Our Work</Cta>
+            <Cta to="/work" variant="ghost">See Our Work</Cta>
           </div>
         </motion.div>
 
@@ -262,9 +264,9 @@ export function Hero() {
 /* ---------- PROBLEM ---------- */
 
 const problems = [
-  { k: "Too much footage", d: "Hours of rushes. One story buried somewhere inside.", stat: "47h", sub: "avg. raw footage per brand film" },
-  { k: "Not enough time", d: "You're running a business, not a post-production house.", stat: "6wk", sub: "typical agency turnaround" },
-  { k: "Freelancer roulette", d: "Managing disjointed freelancers with unpredictable quality and missed deadlines drains your momentum.", stat: "1 team", sub: "dedicated HiKARii post-production pipeline" },
+  { k: "Too much footage", d: "Hours of raw camera rushes. One high-impact story buried somewhere inside.", stat: "47h", sub: "avg. raw footage per brand film" },
+  { k: "Not enough time", d: "You're scaling content and running a business, not an internal video editing house.", stat: "6wk", sub: "typical production delay" },
+  { k: "Freelancer roulette", d: "Managing disjointed freelancers with unpredictable quality and missed deadlines drains your momentum.", stat: "1 team", sub: "dedicated HiKARii post-production team" },
 ];
 
 export function Problem() {
@@ -374,7 +376,13 @@ function StepVisual({ i }: { i: number }) {
   );
 }
 
-export function SystemTimeline() {
+export function SystemTimeline({
+  ctaTo = "/how-it-works",
+  ctaLabel = "Explore our complete editing process →",
+}: {
+  ctaTo?: "/how-it-works" | "/pricing" | "/work" | "/clients" | "/get-started";
+  ctaLabel?: string;
+} = {}) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
   const x = useTransform(scrollYProgress, (v) => `calc(${-v * 100}% + ${v * 100}vw)`);
@@ -394,6 +402,15 @@ export function SystemTimeline() {
                 <span className="h-px w-10 bg-primary" /> The HiKARii system
               </div>
               <h2 className="display mt-4 text-[length:clamp(2.5rem,min(6vw,9vh),6rem)]">Five cuts to final.</h2>
+              {ctaTo === "/how-it-works" ? (
+                <Link to="/how-it-works" className="label mt-3 inline-block text-xs text-ink/70 hover:text-primary transition-colors">
+                  {ctaLabel}
+                </Link>
+              ) : (
+                <Link to={ctaTo} className="label mt-3 inline-block text-xs text-ink/70 hover:text-primary transition-colors">
+                  {ctaLabel}
+                </Link>
+              )}
             </div>
             <div className="display text-[length:clamp(2.5rem,min(6vw,9vh),6rem)] tabular-nums text-primary">0{active + 1}</div>
           </div>
@@ -433,6 +450,15 @@ export function SystemTimeline() {
           <span className="h-px w-10 bg-primary" /> The HiKARii system
         </div>
         <h2 className="display mt-4 text-6xl">Five cuts to final.</h2>
+        {ctaTo === "/how-it-works" ? (
+          <Link to="/how-it-works" className="label mt-3 inline-block text-xs text-ink/70 hover:text-primary transition-colors">
+            {ctaLabel}
+          </Link>
+        ) : (
+          <Link to={ctaTo} className="label mt-3 inline-block text-xs text-ink/70 hover:text-primary transition-colors">
+            {ctaLabel}
+          </Link>
+        )}
         <div className="relative mt-12 border-l-2 border-ink-line pl-6">
           {steps.map((s, i) => (
             <motion.div key={s.n} className="relative pb-14" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-20%" }} transition={{ duration: 0.7, ease }}>
@@ -718,7 +744,7 @@ export function HiKARiiStandard() {
               <RevealLines lines={["Editing that ", "feels different."]} />
             </h2>
             <p className="mt-4 max-w-xl text-base text-gray md:text-lg leading-relaxed">
-              Every cut has a reason. Every frame has a purpose. HiKARii turns raw footage into content with rhythm, identity, and impact.
+              Every cut has a reason. Every frame has a purpose. HiKARii is a professional video editing agency that turns raw footage into polished content with rhythm, identity, and retention.
             </p>
           </div>
           <Cta to="/get-started" variant="ghost" analyticsLocation="other">Start a Project</Cta>
@@ -759,7 +785,7 @@ export function HiKARiiStandard() {
                   STOP THE SCROLL.
                 </h3>
                 <p className="mt-3 text-sm text-gray leading-relaxed md:text-base">
-                  Strong openings, intentional pacing, and cuts that earn the next second.
+                  Strong openings, intentional pacing, and high-retention cuts that earn the next second across short-form and YouTube content.
                 </p>
               </div>
 
@@ -805,7 +831,7 @@ export function HiKARiiStandard() {
                   MAKE THEM STAY.
                 </h3>
                 <p className="mt-3 text-sm text-gray leading-relaxed md:text-base">
-                  Timing, sound, movement, and structure working together to keep attention.
+                  Dynamic sound design, pacing, and visual story structure engineered to keep viewers engaged from start to finish.
                 </p>
               </div>
 
@@ -851,7 +877,7 @@ export function HiKARiiStandard() {
                   MAKE IT REMEMBERED.
                 </h3>
                 <p className="mt-3 text-sm text-gray leading-relaxed md:text-base">
-                  Polish, color, typography, sound design, and detail that give the content its identity.
+                  Precision color grading, kinetic typography, audio mixing, and post-production polish that give your videos a distinct visual identity.
                 </p>
               </div>
 
@@ -883,10 +909,15 @@ export function Editors() {
               <RevealLines lines={["The craft, ", "on call."]} />
             </h2>
             <p className="mt-4 max-w-lg text-sm text-gray md:text-base">
-              Behind every HiKARii cut is a dedicated lead editor from our internal studio team. We assign the right specialist to your brief—you never have to browse or manage freelancers.
+              Behind every HiKARii cut is a dedicated lead editor from our professional post-production team. We match specialized video editors to your exact format and pacing—delivering agency consistency without the freelancer friction.
             </p>
           </div>
-          <Cta to="/get-started" variant="ghost" analyticsLocation="other">Start a Project</Cta>
+          <div className="flex flex-wrap items-center gap-4">
+            <Cta to="/get-started" variant="ghost" analyticsLocation="other">Start a Project</Cta>
+            <Link to="/clients" className="label text-xs text-gray hover:text-snow transition-colors">
+              Client workflow details →
+            </Link>
+          </div>
         </div>
 
         <div className="no-scrollbar mt-16 flex snap-x gap-4 overflow-x-auto pb-8 lg:gap-0 lg:overflow-visible lg:pl-4">
@@ -1027,20 +1058,31 @@ export function ForClients() {
         <h2 className="display mt-6 text-[13vw] md:text-[clamp(3.5rem,6vw,6rem)]">
           <RevealLines lines={["You bring", "the story."]} />
         </h2>
-        <div className="mt-12 flex flex-wrap gap-2">
+        <p className="mt-4 max-w-md text-base text-ink/70">
+          Upload raw footage, project assets, and creative guidelines. HiKARii's video editing team organizes media, reviews the creative vision, and builds the narrative structure.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-2">
           {["A001_C004.mov", "interview_cam_b.mp4", "broll_drone.mov", "VO_take3.wav", "logo_pack.zip"].map((f, i) => (
             <motion.span key={f} className="label border border-ink-line bg-snow px-3 py-2" initial={{ x: -40, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.08, ease }}>
               {f}
             </motion.span>
           ))}
         </div>
-        <div className="mt-12"><Cta to="/get-started" variant="ink" analyticsLocation="other">Start a project</Cta></div>
+        <div className="mt-10 flex flex-wrap items-center gap-4">
+          <Cta to="/get-started" variant="ink" analyticsLocation="other">Start a project</Cta>
+          <Link to="/how-it-works" className="label text-xs text-ink/70 hover:text-primary transition-colors">
+            See how the editing process works →
+          </Link>
+        </div>
       </div>
       <div className="bg-ink px-5 py-24 md:px-10 md:py-40">
         <h2 className="display text-[13vw] lg:text-right md:text-[clamp(3.5rem,6vw,6rem)]">
           <RevealLines lines={["We craft", "the edit."]} delay={0.2} />
         </h2>
-        <div className="mt-12 space-y-0 lg:ml-auto lg:max-w-sm">
+        <p className="mt-4 max-w-md text-base text-snow/70 lg:ml-auto lg:text-right">
+          From first rough cut through collaborative revisions and color-graded master delivery, our post-production team ensures agency-level polish for every release.
+        </p>
+        <div className="mt-8 space-y-0 lg:ml-auto lg:max-w-sm">
           {stages.map((s, i) => (
             <div key={s} className="flex items-center gap-4 border-b border-border py-5">
               <span className="label text-primary">0{i + 1}</span>
@@ -1249,7 +1291,7 @@ export function Portfolio() {
       <div className="relative overflow-hidden" style={desk ? { aspectRatio: w.ratio, height: "min(50vh, 520px)" } : { aspectRatio: w.ratio }}>
         <img
           src={w.img}
-          alt={`${w.title} — ${w.cat}`}
+          alt={w.alt || `${w.title} — ${w.cat}`}
           width={w.width}
           height={w.height}
           loading="lazy"
@@ -1315,7 +1357,7 @@ export function Matching() {
           <RevealLines lines={["One brief. ", "The right team."]} />
         </h2>
         <p className="mt-4 max-w-xl text-base text-ink/70">
-          Your footage. Our editing team. Behind every HiKARii cut is an editor selected from our internal studio team based on your style, format, and pacing. You don't browse freelancers or negotiate rates—HiKARii directs the entire post-production process.
+          Your raw footage. Our post-production team. Behind every HiKARii cut is a dedicated video editor assigned to your style, channel format, and delivery schedule. You don't browse freelancers or negotiate rates—HiKARii manages the entire professional video editing workflow.
         </p>
         <div ref={ref} className="relative mt-16 grid gap-10 lg:grid-cols-[1fr_1.4fr_1fr] lg:items-center">
           <motion.div initial={{ opacity: 0, x: -40 }} animate={inView ? { opacity: 1, x: 0 } : {}} transition={{ duration: 0.8, ease }} className="bg-ink p-6 text-snow">
@@ -1348,7 +1390,12 @@ export function Matching() {
             ))}
           </div>
         </div>
-        <p className="label mt-10 text-ink/50">Internal team assignment ensures brand alignment, rapid turnaround, and zero freelancer friction.</p>
+        <div className="mt-10 flex flex-wrap items-center justify-between gap-4">
+          <p className="label text-ink/50">Dedicated agency post-production ensures consistent brand quality, fast turnarounds, and master video delivery.</p>
+          <Link to="/pricing" className="label text-xs font-bold text-ink hover:text-primary transition-colors">
+            View video editing plans & pricing →
+          </Link>
+        </div>
       </div>
     </section>
   );
@@ -1442,7 +1489,17 @@ export function Stats() {
 
 /* ---------- FINAL CTA ---------- */
 
-export function FinalCta() {
+export function FinalCta({
+  primaryTo = "/get-started",
+  primaryLabel = "Start a Project",
+  secondaryTo = "/work",
+  secondaryLabel = "See Our Work",
+}: {
+  primaryTo?: "/get-started" | "/pricing" | "/work" | "/how-it-works" | "/clients";
+  primaryLabel?: string;
+  secondaryTo?: "/get-started" | "/pricing" | "/work" | "/how-it-works" | "/clients";
+  secondaryLabel?: string;
+} = {}) {
   const lightweight = useLightweightMotion();
   return (
     <section className="relative overflow-hidden bg-ink py-32 md:py-48">
@@ -1460,11 +1517,11 @@ export function FinalCta() {
           <RevealLines lines={["Ready to turn", "your footage into", "finished content?"]} />
         </h2>
         <p className="mt-8 max-w-lg text-lg text-snow/70">
-          Tell us what you're working on. We'll take it from there.
+          Partner with our professional video editing agency. Send us your footage and creative brief—our post-production team will take it from first cut to final master.
         </p>
         <div className="mt-12 flex flex-wrap gap-3">
-          <Cta to="/get-started" analyticsLocation="footer">Start a Project</Cta>
-          <Cta to="/work" variant="ghost">View Our Work</Cta>
+          <Cta to={primaryTo} analyticsLocation="footer">{primaryLabel}</Cta>
+          <Cta to={secondaryTo} variant="ghost">{secondaryLabel}</Cta>
         </div>
       </div>
     </section>
@@ -1473,7 +1530,7 @@ export function FinalCta() {
 
 /* ---------- PAGE HEADER for inner routes ---------- */
 
-export function PageHeader({ n, eyebrow, lines, intro }: { n: string; eyebrow: string; lines: string[]; intro: string }) {
+export function PageHeader({ n, eyebrow, lines, intro, actions }: { n: string; eyebrow: string; lines: string[]; intro: string; actions?: ReactNode }) {
   return (
     <section className="grain relative overflow-hidden bg-ink pb-20 pt-40 md:pb-28 md:pt-52">
       <div className="mx-auto max-w-[1600px] px-5 md:px-10">
@@ -1484,6 +1541,11 @@ export function PageHeader({ n, eyebrow, lines, intro }: { n: string; eyebrow: s
         <motion.p className="mt-8 max-w-lg text-lg text-snow/70" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, ease }}>
           {intro}
         </motion.p>
+        {actions && (
+          <motion.div className="mt-8" initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, ease }}>
+            {actions}
+          </motion.div>
+        )}
         <motion.div className="mt-14 h-[2px] origin-left bg-primary" initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1.2, ease, delay: 0.3 }} />
       </div>
     </section>

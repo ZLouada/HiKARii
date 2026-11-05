@@ -8,7 +8,10 @@ import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/dashboard/projects/new")({
   head: () => ({
-    meta: [{ title: "Start a New Project — HiKARii" }],
+    meta: [
+      { title: "Start a New Project — HiKARii" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: NewProjectPage,
 });

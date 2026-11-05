@@ -15,7 +15,10 @@ import {
 
 export const Route = createFileRoute("/dashboard/settings")({
   head: () => ({
-    meta: [{ title: "Settings — HiKARii" }],
+    meta: [
+      { title: "Settings — HiKARii" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: SettingsPage,
 });

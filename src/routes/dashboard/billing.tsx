@@ -14,7 +14,10 @@ import {
 
 export const Route = createFileRoute("/dashboard/billing")({
   head: () => ({
-    meta: [{ title: "Billing — HiKARii" }],
+    meta: [
+      { title: "Billing — HiKARii" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: BillingPage,
 });

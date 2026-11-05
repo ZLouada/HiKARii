@@ -21,7 +21,10 @@ import {
 
 export const Route = createFileRoute("/dashboard/files")({
   head: () => ({
-    meta: [{ title: "Files — HiKARii" }],
+    meta: [
+      { title: "Files — HiKARii" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: FilesPage,
 });

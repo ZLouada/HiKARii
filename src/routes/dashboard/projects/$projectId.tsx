@@ -30,7 +30,10 @@ import {
 
 export const Route = createFileRoute("/dashboard/projects/$projectId")({
   head: () => ({
-    meta: [{ title: "Project Details — HiKARii" }],
+    meta: [
+      { title: "Project Details — HiKARii" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: ProjectDetailPage,
 });

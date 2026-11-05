@@ -8,7 +8,10 @@ import { History as HistoryIcon, Search, ArrowUpDown, Download, ArrowRight, Vide
 
 export const Route = createFileRoute("/dashboard/history")({
   head: () => ({
-    meta: [{ title: "History — HiKARii" }],
+    meta: [
+      { title: "History — HiKARii" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: HistoryPage,
 });

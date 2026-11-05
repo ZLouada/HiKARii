@@ -31,20 +31,37 @@ type Form = z.infer<typeof schema>;
 export const Route = createFileRoute("/get-started")({
   head: () => ({
     meta: [
-      { title: "Get Started — Video Editing Agency | HiKARii" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://hikarii.studio/get-started" },
+      { name: "robots", content: "index, follow" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { title: "Start a Video Editing Project — HiKARii" },
       {
         name: "description",
         content:
-          "Tell us about your project and begin working with HiKARii's professional video editing team.",
+          "Start a video editing project with HiKARii. Submit your creative brief and timeline to collaborate with our dedicated post-production team on your next cut.",
       },
-      { property: "og:title", content: "Get Started — HiKARii" },
+      { property: "og:title", content: "Start a Video Editing Project — HiKARii" },
       {
         property: "og:description",
         content:
-          "Submit your project in two minutes and start working with HiKARii's editing team.",
+          "Start a video editing project with HiKARii. Submit your creative brief and timeline to collaborate with our dedicated post-production team on your next cut.",
       },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: "https://hikarii.studio/og-image.png" },
+      { name: "twitter:title", content: "Start a Video Editing Project — HiKARii" },
+      {
+        name: "twitter:description",
+        content:
+          "Start a video editing project with HiKARii. Submit your creative brief and timeline to collaborate with our dedicated post-production team on your next cut.",
+      },
+      { name: "twitter:image", content: "https://hikarii.studio/og-image.png" },
+      { name: "twitter:image:alt", content: "HiKARii — Professional Video Editing Agency" },
+    ],
+    links: [
+      {
+        rel: "canonical",
+        href: "https://hikarii.studio/get-started",
+      },
     ],
   }),
   component: GetStarted,
@@ -169,11 +186,38 @@ function GetStarted() {
       <PageHeader
         n="G"
         eyebrow="Get started"
-        lines={["Start your", "project."]}
-        intro="Tell us about your project. HiKARii reviews every submission and assigns dedicated senior editors who specialize in your format, style, and timeline."
+        lines={["Start a video", "editing project."]}
+        intro="Share your creative vision, format, and project timeline with HiKARii. Our post-production team reviews every brief and pairs your project with dedicated editors specialized in your style."
+        actions={
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-snow/60">
+            <Link to="/pricing" className="link-line hover:text-primary transition-colors">
+              View video editing pricing
+            </Link>
+            <span className="text-snow/30">·</span>
+            <Link to="/work" className="link-line hover:text-primary transition-colors">
+              See our video editing work
+            </Link>
+            <span className="text-snow/30">·</span>
+            <Link to="/how-it-works" className="link-line hover:text-primary transition-colors">
+              See how the editing process works →
+            </Link>
+            <span className="text-snow/30">·</span>
+            <Link to="/clients" className="link-line hover:text-primary transition-colors">
+              See how we work with clients →
+            </Link>
+          </div>
+        }
       />
       <section className="bg-paper py-20 text-ink md:py-28">
         <div className="mx-auto max-w-[1000px] px-5 md:px-10">
+          {!done && (
+            <div className="mb-12 border-b border-ink-line pb-8">
+              <div className="label text-primary font-bold">Studio Project Intake</div>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink/70">
+                HiKARii is a professional video editing agency. Every submission is reviewed directly by our post-production team to understand your format, pacing, and creative vision before assigning the right specialized editors to your cut.
+              </p>
+            </div>
+          )}
           {done ? (
             <div className="border border-ink-line p-10 md:p-16">
               <div className="label text-primary">Application received</div>

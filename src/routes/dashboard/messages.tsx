@@ -13,7 +13,10 @@ import {
 
 export const Route = createFileRoute("/dashboard/messages")({
   head: () => ({
-    meta: [{ title: "Messages — HiKARii" }],
+    meta: [
+      { title: "Messages — HiKARii" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: MessagesPage,
 });

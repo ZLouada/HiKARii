@@ -8,7 +8,10 @@ import { CheckSquare, ArrowUpDown, Filter, CheckCircle2, Circle, Clock, ArrowRig
 
 export const Route = createFileRoute("/dashboard/tasks")({
   head: () => ({
-    meta: [{ title: "Tasks — HiKARii" }],
+    meta: [
+      { title: "Tasks — HiKARii" },
+      { name: "robots", content: "noindex, nofollow" },
+    ],
   }),
   component: TasksPage,
 });
